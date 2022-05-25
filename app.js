@@ -49,31 +49,40 @@ input.addEventListener('keypress', function (e) {
         tasksList.appendChild(newTask);
 
         input.value = "";
+        return newTask;
         console.log(actionBtnsArray);
+
     }
 })
  
 
-// actionBtnsArray.forEach(function (btn) {
-//     btn.addEventListener('click', function(e){
-//         const styles = e.currentTarget.classList;
-//         if (styles.contains('edit')) {
-//             console.log("Yup");
-//         } 
-//         else if (styles.contains('delete')) {
-//             console.log("nope");
-//         }
-//     });
-// })
-
-for (var i = 0; i < actionBtnsArray.length; i++) {
-    actionBtnsArray[i].addEventListener('click', function() {
-        if (actionBtnsArray[i].classList.contains("edit")) {
-            console.log("Yup");
-        }
-        else if (actionBtnsArray[i].classList.contains("delete")) {
-            console.log("Nope");
+actionBtnsArray.forEach(function (btn) {
+    btn.addEventListener('click', function(e){
+        const target = e.target;
+        const listItemParent = target.parentElement.parentElement;
+        const styles = e.currentTarget.classList;
+        if (styles.contains('edit')) {
+            if (target.innerHTML.toLowerCase() == "edit") {
+                target.innerHTML = "Save";
+                console.log("Yup");
+            } else {
+                target.innerHTML = "Edit";
+            };
+        } 
+        else if (styles.contains('delete')) {
+            console.log("nope");
         }
     });
+})
+
+// for (var i = 0; i < actionBtnsArray.length; i++) {
+//     actionBtnsArray[i].addEventListener('click', function() {
+//         if (actionBtnsArray[i].classList.contains("edit")) {
+//             console.log("Yup");
+//         }
+//         else if (actionBtnsArray[i].classList.contains("delete")) {
+//             console.log("Nope");
+//         }
+//     });
    
-  }
+//   }
