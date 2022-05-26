@@ -63,6 +63,14 @@ actionBtnsArray.forEach(function (btn) {
         const styles = e.currentTarget.classList;
         if (styles.contains('edit')) {
             if (target.innerHTML.toLowerCase() == "edit") {
+                listItemParent.removeAttribute("readonly");
+                listItemParent.focus();
+                let item = listItemParent.innerHTML;
+                let itemInput = document.createElement('input');
+                itemInput.type = 'text';
+                itemInput.value = item;
+                itemInput.classList.add("edit","actionButton");
+                listItemParent.remove();
                 target.innerHTML = "Save";
                 console.log("Yup");
             } else {
@@ -70,19 +78,8 @@ actionBtnsArray.forEach(function (btn) {
             };
         } 
         else if (styles.contains('delete')) {
+            listItemParent.remove();
             console.log("nope");
         }
     });
 })
-
-// for (var i = 0; i < actionBtnsArray.length; i++) {
-//     actionBtnsArray[i].addEventListener('click', function() {
-//         if (actionBtnsArray[i].classList.contains("edit")) {
-//             console.log("Yup");
-//         }
-//         else if (actionBtnsArray[i].classList.contains("delete")) {
-//             console.log("Nope");
-//         }
-//     });
-   
-//   }
