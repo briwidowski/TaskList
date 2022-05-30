@@ -8,6 +8,7 @@ html {
 
 body {
     margin: 0 auto;
+    padding-top: 6%;
     text-align: center;
     background: linear-gradient(-165deg, #8369af 60%, rgb(44, 43, 43) 40%);
     width: 70%;
