@@ -61,15 +61,16 @@ function addTask() {
 
 function editTask(e) {
     target = e.target;
+    listItemParent = target.parentElement;
+    const listItemSpan = listItemParent.previousElementSibling;
     if (target.innerHTML.toLowerCase() == "edit") {
-        target.style = "text-decoration:none";
-        listItemParent = target.parentElement.parentElement;
-        listItemParent.removeAttribute("readonly");
-        listItemParent.focus();
+        listItemSpan.setAttribute("contentEditable", true);
+        listItemSpan.focus();
+        listItemSpan.onclick = null;
         target.innerHTML = "Save";
-        console.log("Yup");
     } else {
         target.innerHTML = "Edit";
+        listItemSpan.setAttribute("contentEditable", false);
     }
 
 }
@@ -78,10 +79,13 @@ function deleteTask(e) {
     target = e.target;
     listItemParent = target.parentElement.parentElement;
     listItemParent.remove();
-    console.log("nope");
 }
 
 function crossTask(e) {
     target = e.target;
-    target.classList.toggle("cross-out");
+    if (target.isContentEditable ) {
+        return target;
+    } else {
+        target.classList.toggle("cross-out");
+    }
 }
