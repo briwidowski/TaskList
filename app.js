@@ -26,8 +26,9 @@ input.addEventListener('keypress', function(e) {
 function addTask() {
     // Create a new li element for input
     const newTask = document.createElement('li');
-    newTask.classList.add('text-content');
-    newTask.innerHTML = task;
+    const newTaskText = document.createElement('span');
+    newTask.appendChild(newTaskText);
+    newTaskText.innerHTML = task;
 
     // Create a div for the edit and delete buttons
     const btnsDiv = document.createElement('div');
@@ -55,11 +56,13 @@ function addTask() {
 
     editBtn.addEventListener('click', editTask);
     deleteBtn.addEventListener('click', deleteTask);
+    newTaskText.addEventListener('click', crossTask);
 }
 
 function editTask(e) {
     target = e.target;
     if (target.innerHTML.toLowerCase() == "edit") {
+        target.style = "text-decoration:none";
         listItemParent = target.parentElement.parentElement;
         listItemParent.removeAttribute("readonly");
         listItemParent.focus();
@@ -76,4 +79,9 @@ function deleteTask(e) {
     listItemParent = target.parentElement.parentElement;
     listItemParent.remove();
     console.log("nope");
+}
+
+function crossTask(e) {
+    target = e.target;
+    target.classList.toggle("cross-out");
 }
